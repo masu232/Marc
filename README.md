@@ -1,44 +1,58 @@
-import pandas as pd
+<h1>JWipe - Disk Sanitization</h1>
 
-# Load the movie ratings dataset
-df = pd.read_csv('movie_ratings.csv')
+ ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
 
-# Sample dataset:
-# Movie            Genre      Rating     User
-# Movie A          Action     4.5        User1
-# Movie B          Drama      3.8        User2
-# ...              ...        ...        ...
+<h2>Description</h2>
+Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+<br />
 
-# Perform data preprocessing if required (e.g., handle missing values)
 
-# Create a user-item matrix for collaborative filtering
-user_item_matrix = df.pivot_table(index='User', columns='Movie', values='Rating')
+<h2>Languages and Utilities Used</h2>
 
-# Define a function to get movie recommendations for a user
-def get_movie_recommendations(user, num_recommendations=5):
-    user_ratings = user_item_matrix.loc[user]
-    similar_users = user_item_matrix.corrwith(user_ratings)
-    similar_users = similar_users.dropna()
-    similar_users.sort_values(ascending=False, inplace=True)
+- <b>PowerShell</b> 
+- <b>Diskpart</b>
 
-    # Filter out movies the user has already rated
-    rated_movies = user_item_matrix.loc[user].dropna().index
-    recommended_movies = []
-    for similar_user, similarity_score in similar_users.iteritems():
-        similar_user_rated = user_item_matrix.loc[similar_user].dropna().index
-        new_movies = set(similar_user_rated) - set(rated_movies)
-        recommended_movies.extend(new_movies)
-        if len(recommended_movies) >= num_recommendations:
-            break
+<h2>Environments Used </h2>
 
-    return recommended_movies[:num_recommendations]
+- <b>Windows 10</b> (21H2)
 
-# Example usage:
-user = 'User1'
-recommendations = get_movie_recommendations(user, num_recommendations=5)
+<h2>Program walk-through:</h2>
 
-# Print the recommended movies for the user
-print(f"Movie recommendations for {user}:")
-for i, movie in enumerate(recommendations, 1):
-    print(f"{i}. {movie}")
+<p align="center">
+Launch the utility: <br/>
+<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+Select the disk:  <br/>
+<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+Enter the number of passes: <br/>
+<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+Confirm your selection:  <br/>
+<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+Wait for process to complete (may take some time):  <br/>
+<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+Sanitization complete:  <br/>
+<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+Observe the wiped disk:  <br/>
+<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
 
+<!--
+ ```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+--!>
