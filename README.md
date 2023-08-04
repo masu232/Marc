@@ -47,7 +47,8 @@ Save the script to a Python file (e.g., disk_sanitization.py) and execute it. Ma
 ![image](https://github.com/masu232/Marc/assets/141105291/6a423124-842f-4143-bc70-2ef07d8b125c)
 ![image](https://github.com/masu232/Marc/assets/141105291/fbec4a7d-3380-4df7-ad7c-7e56b02b1cd9)
 
-
+6. Confirmation:
+Once the script finishes execution, it will print "Disk sanitization completed."
 
 <!--
  ```diff
